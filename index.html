@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OneWorld AI Pitch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <main class="scrolly">
+      <section
+        class="slide"
+        id="slide-1"
+        style="--bg: radial-gradient(circle at 20% 20%, #f5f7ff 0%, #ffffff 55%, #f2f0ff 100%); --text: #101018;"
+      >
+        <div class="slide-content hero">
+          <div class="eyebrow">OneWorld AI</div>
+          <h1 class="hero-title">World Model for Post-Training in Physical Domains</h1>
+          <div class="authors">
+            <div class="author">
+              <div class="author-name">Sherry Yang</div>
+              <div class="author-affil">NYU / Google DeepMind</div>
+            </div>
+            <div class="author">
+              <div class="author-name">Hieu Pham</div>
+              <div class="author-affil">OpenAI</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-2"
+        style="--bg: radial-gradient(circle at 20% 10%, #ffe9d5 0%, #fff7ef 50%, #ffffff 100%); --text: #241a12;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>The Post-Training Gap</h2>
+            <p>GPT-3 wasn't usable until RLHF - we need post-training.</p>
+          </header>
+
+          <div class="s2-grid">
+            <div class="preference-card" aria-label="Human preference ranking">
+              <div class="pref-avatar" aria-hidden="true">
+                <div class="pref-head"></div>
+                <div class="pref-body"></div>
+              </div>
+              <div class="pref-rank">
+                <span class="pill">D</span>
+                <span class="rank-op">&gt;</span>
+                <span class="pill">C</span>
+                <span class="rank-op">&gt;</span>
+                <span class="pill">A</span>
+                <span class="rank-op">=</span>
+                <span class="pill">B</span>
+              </div>
+            </div>
+
+            <div class="refresh-card" aria-hidden="true">
+              <div class="refresh-icon">
+                <svg viewBox="0 0 64 64" class="refresh-svg">
+                  <path
+                    d="M50 18a22 22 0 0 0-37 8"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M13 26l-1-12 12 1"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M14 46a22 22 0 0 0 37-8"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M51 38l1 12-12-1"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <div class="refresh-text">Human feedback loop</div>
+            </div>
+
+            <div class="s2-images">
+              <img
+                src="assets/pptx/slide02_img01.png"
+                alt="Preference visualization"
+              />
+              <img
+                src="assets/pptx/slide02_img02.png"
+                alt="Feedback signals"
+              />
+            </div>
+          </div>
+
+          <div class="pipeline">
+            <div class="stage">Pretraining</div>
+            <div class="stage">SFT</div>
+            <div class="stage">Reward Model</div>
+            <div class="stage">RL</div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-3"
+        style="--bg: linear-gradient(135deg, #f4f8ff 0%, #ffffff 60%, #f1f1ff 100%); --text: #111827;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>The Post-Training Gap</h2>
+            <p>Existing robot companies are not closing the post-training gap.</p>
+          </header>
+
+          <div class="cards-grid">
+            <div class="info-card">
+              <img src="assets/pptx/slide03_img03.jpg" alt="Robot data companies" />
+              <h3>Robot data companies</h3>
+              <p>Collect data, but do not run the feedback loop.</p>
+            </div>
+            <div class="info-card">
+              <img src="assets/pptx/slide03_img04.png" alt="Robot companies" />
+              <h3>Robot companies</h3>
+              <p>Have platforms, but lack scalable post-training.</p>
+            </div>
+          </div>
+
+          <div class="pipeline light">
+            <div class="stage">Pretraining</div>
+            <div class="stage">SFT</div>
+            <div class="stage">Reward Model</div>
+            <div class="stage">RL</div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-4"
+        style="--bg: radial-gradient(circle at 30% 20%, #e7fffb 0%, #f8fffc 50%, #ffffff 100%); --text: #0f1c1b;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>The Post-Training Gap</h2>
+            <p>We build post-training for physical domains.</p>
+          </header>
+
+          <div class="cards-grid">
+            <div class="info-card">
+              <img src="assets/pptx/slide04_img05.jpg" alt="Robot data companies" />
+              <h3>Robot data companies</h3>
+              <p>We partner for data coverage and diversity.</p>
+            </div>
+            <div class="info-card">
+              <img src="assets/pptx/slide04_img06.png" alt="Robot companies" />
+              <h3>Robot companies</h3>
+              <p>We provide cloud training + evaluation.</p>
+            </div>
+          </div>
+
+          <div class="pipeline highlight">
+            <div class="stage">Pretraining</div>
+            <div class="stage">SFT</div>
+            <div class="stage focus">Reward Model</div>
+            <div class="stage">RL</div>
+            <div class="us-badge">Us</div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-5"
+        style="--bg: radial-gradient(circle at 70% 20%, #fff5eb 0%, #fefaf4 60%, #ffffff 100%); --text: #231c14;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>Why is Physical Post-Training Hard</h2>
+            <p>Can't do RL in the physical world.</p>
+          </header>
+
+          <div class="two-col">
+            <div class="media-stack">
+              <img
+                src="assets/pptx/slide05_img07.gif"
+                alt="Physical robot in the real world"
+              />
+              <div class="tag">Physical World</div>
+            </div>
+            <div class="info-stack">
+              <div class="info-panel">
+                <img
+                  src="assets/pptx/slide05_img09.png"
+                  alt="World constraints"
+                />
+                <p>
+                  Need to run physical robot to get reward (one action at a time).
+                </p>
+              </div>
+              <div class="info-panel">
+                <img
+                  src="assets/pptx/slide05_img08.jpg"
+                  alt="Limited settings"
+                />
+                <p>Settings are limited to the physical scene (one scene at a time).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-6"
+        style="--bg: linear-gradient(135deg, #e8f4ff 0%, #f7fbff 55%, #ffffff 100%); --text: #0e1624;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>Our Solution: World Model</h2>
+            <p>A world model is learned from data and runs in the cloud.</p>
+          </header>
+
+          <div class="solution-grid">
+            <div class="world-model-card">
+              <img src="assets/pptx/slide06_img10.png" alt="World model" />
+              <h3>World Model</h3>
+              <p>Can be queried in parallel and simulate an arbitrary scene.</p>
+            </div>
+            <div class="world-model-media">
+              <img
+                src="assets/pptx/slide06_img11.png"
+                alt="World model system diagram"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-7"
+        style="--bg: radial-gradient(circle at 30% 0%, #f0f5ff 0%, #ffffff 55%, #f2f7ff 100%); --text: #0d1c2a;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>Our Solution: World Model</h2>
+            <p>A world model takes observations and actions and generates videos.</p>
+          </header>
+          <img
+            class="hero-media"
+            src="assets/pptx/slide07_img12.png"
+            alt="Generated video"
+          />
+          <div class="media-caption">Generated video</div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-8"
+        style="--bg: linear-gradient(160deg, #0c1420 0%, #101c2a 55%, #162738 100%); --text: #f8fbff;"
+        data-tone="dark"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>Our Solution: World Model</h2>
+            <p>A world model provides an RL environment to train robot policies.</p>
+          </header>
+          <div class="overlay-media">
+            <img
+              src="assets/pptx/slide08_img13.png"
+              alt="World model training environment"
+            />
+            <span class="badge badge-left">Fail ✕</span>
+            <span class="badge badge-right">Success ✓</span>
+            <span class="badge badge-bottom">Reinforcement Learning</span>
+            <span class="badge badge-top">Reward Model</span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-9"
+        style="--bg: radial-gradient(circle at 20% 20%, #fff7e8 0%, #ffffff 60%, #f3f0ff 100%); --text: #1e1b24;"
+      >
+        <div class="slide-content center">
+          <div class="eyebrow">The Tech</div>
+          <h2 class="hero-title">Pretraining the Best World Model</h2>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-10"
+        style="--bg: radial-gradient(circle at 20% 0%, #ecfff7 0%, #f7fffb 55%, #ffffff 100%); --text: #0d1e1a;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>Scaling World Model Pretraining Data</h2>
+            <p>We will curate the best world model pretraining dataset.</p>
+          </header>
+          <img
+            class="hero-media"
+            src="assets/pptx/slide10_img14.png"
+            alt="Pretraining data overview"
+          />
+          <div class="media-caption">
+            We have curated diverse interactive datasets from humans and robots.
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-11"
+        style="--bg: linear-gradient(135deg, #f5f3ff 0%, #ffffff 60%, #eef5ff 100%); --text: #1b1b2a;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>Scaling World Model Parameters</h2>
+            <p>We will build the largest and best foundation world model.</p>
+          </header>
+
+          <div class="chart-card">
+            <div class="chart-title">Like LLMs, our world model scales favorably</div>
+            <div class="bar-chart" aria-hidden="true">
+              <div class="bar" style="--h: 35%">1B</div>
+              <div class="bar" style="--h: 55%">7B</div>
+              <div class="bar" style="--h: 75%">30B</div>
+              <div class="bar" style="--h: 92%">100B</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-12"
+        style="--bg: radial-gradient(circle at 30% 20%, #eef6ff 0%, #f8fbff 55%, #ffffff 100%); --text: #0e1523;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>Building RL Infrastructure</h2>
+          </header>
+
+          <div class="infra-diagram">
+            <div class="infra-column">
+              <h3>Compute (GPUs)</h3>
+              <div class="icon-grid">
+                <img src="assets/pptx/slide12_img15.jpg" alt="GPU" />
+                <img src="assets/pptx/slide12_img16.jpg" alt="GPU" />
+                <img src="assets/pptx/slide12_img17.jpg" alt="GPU" />
+                <img src="assets/pptx/slide12_img18.jpg" alt="GPU" />
+              </div>
+            </div>
+
+            <div class="infra-core">
+              <div class="core-card">
+                <h3>OneWorld</h3>
+                <p>World Model + RL Environment</p>
+                <span>Central engine of the ecosystem</span>
+              </div>
+            </div>
+
+            <div class="infra-column">
+              <h3>Robot companies</h3>
+              <div class="icon-grid">
+                <img src="assets/pptx/slide12_img19.png" alt="Robot company" />
+                <img src="assets/pptx/slide12_img20.png" alt="Robot company" />
+                <img src="assets/pptx/slide12_img21.png" alt="Robot company" />
+                <img src="assets/pptx/slide12_img22.png" alt="Robot company" />
+              </div>
+            </div>
+          </div>
+          <div class="infra-caption">Enable</div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-13"
+        style="--bg: radial-gradient(circle at 20% 20%, #fff3ea 0%, #fffaf5 55%, #ffffff 100%); --text: #20160d;"
+      >
+        <div class="slide-content center">
+          <div class="eyebrow">Demos</div>
+          <h2 class="hero-title">World Creation and RL Training</h2>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-14"
+        style="--bg: linear-gradient(120deg, #f0fff4 0%, #ffffff 60%, #f7fff9 100%); --text: #122013;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>Task Creation in Our World Model</h2>
+            <p>Our world model generates infinite novel scenarios and rewards.</p>
+          </header>
+          <div class="chips">
+            <span>Pick up carrot</span>
+            <span>Pick up orange</span>
+          </div>
+          <div class="task-panel">
+            <div class="task-visual">Novel scenario generator</div>
+            <div class="task-visual">Reward shaping engine</div>
+            <div class="task-visual">Simulation variations</div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-15"
+        style="--bg: linear-gradient(120deg, #f3f6ff 0%, #ffffff 60%, #f7fbff 100%); --text: #121826;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>Task Creation in Our World Model</h2>
+            <p>Our world model generates infinite novel scenarios and rewards.</p>
+          </header>
+          <div class="chips">
+            <span>Pick Taylor Swift</span>
+            <span>Pick red</span>
+            <span>Pick circle</span>
+          </div>
+          <div class="task-panel">
+            <div class="task-visual">Prompt-to-task compiler</div>
+            <div class="task-visual">Procedural scene builder</div>
+            <div class="task-visual">Reward templates</div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-16"
+        style="--bg: radial-gradient(circle at 70% 10%, #f7f1ff 0%, #ffffff 60%, #f0f5ff 100%); --text: #1b1630;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>RL Training in Our World Model</h2>
+            <p>Before RL training, VLA policies fail to generalize.</p>
+          </header>
+          <div class="two-col">
+            <div class="media-stack">
+              <img src="assets/pptx/slide16_img23.png" alt="Train" />
+              <div class="tag">Train</div>
+            </div>
+            <div class="media-stack">
+              <img src="assets/pptx/slide16_img24.png" alt="Test" />
+              <div class="tag">Test</div>
+            </div>
+          </div>
+          <div class="chart-note">
+            Generalization gap
+            <span class="chart-sub">Measured across novel environments</span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-17"
+        style="--bg: linear-gradient(160deg, #0b1018 0%, #131b26 55%, #1a2430 100%); --text: #f3f7ff;"
+        data-tone="dark"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>RL Training in Our World Model</h2>
+            <p>After RL training, a robot policy improves drastically (measured on real robot).</p>
+          </header>
+          <div class="rollouts">
+            <div class="rollout">
+              <h3>A failed rollout in our world model</h3>
+              <div class="rollout-bar">Failure</div>
+            </div>
+            <div class="rollout">
+              <h3>A successful rollout in our world model</h3>
+              <div class="rollout-bar success">Success</div>
+            </div>
+          </div>
+          <div class="chart-card dark">
+            <div class="chart-title">Real-robot success rate</div>
+            <div class="line-chart" aria-hidden="true"></div>
+            <div class="chart-footer">Used by RL</div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-18"
+        style="--bg: radial-gradient(circle at 20% 0%, #f7fff9 0%, #ffffff 55%, #edf3ff 100%); --text: #102019;"
+      >
+        <div class="slide-content center">
+          <h2>Simulating Human(oid) Interactions</h2>
+          <p class="big-copy">
+            Our world model can simulate interactions from humans and future humanoid robots.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-19"
+        style="--bg: linear-gradient(135deg, #fff5e8 0%, #ffffff 60%, #f2f7ff 100%); --text: #1e1a13;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>Summary</h2>
+          </header>
+          <div class="summary-grid">
+            <div class="summary-card">
+              <h3>Our role</h3>
+              <ul>
+                <li>Central engine for post-training in the physical domain</li>
+                <li>Enable robot companies to train and evaluate robots in the cloud</li>
+              </ul>
+            </div>
+            <div class="summary-card">
+              <h3>Our technology</h3>
+              <ul>
+                <li>Pretrained the best world model (data + model scaling)</li>
+                <li>RL infrastructure</li>
+              </ul>
+            </div>
+            <div class="summary-card">
+              <h3>Our evidence</h3>
+              <ul>
+                <li>World model pretraining scales favorably</li>
+                <li>Novel scenarios in a world model</li>
+                <li>RL in a world model transfers to better real-robot performance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-20"
+        style="--bg: radial-gradient(circle at 30% 20%, #f4f8ff 0%, #ffffff 60%, #f1f5ff 100%); --text: #0e1523;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>Business: World Model and Infrastructure as a Service</h2>
+          </header>
+          <div class="cards-grid">
+            <div class="info-card">
+              <h3>World Model API</h3>
+              <p>Generate synthetic environments and scenario variations on demand.</p>
+            </div>
+            <div class="info-card">
+              <h3>RL Infrastructure</h3>
+              <p>Train policies with scalable compute, evaluation, and safety tooling.</p>
+            </div>
+            <div class="info-card">
+              <h3>Enterprise Partnerships</h3>
+              <p>Align with robot companies and collect the data flywheel together.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-21"
+        style="--bg: linear-gradient(135deg, #f0f5ff 0%, #ffffff 60%, #f1f0ff 100%); --text: #131828;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>Why We Will Win</h2>
+          </header>
+          <div class="bullet-panel">
+            <ul>
+              <li>Segregated world model training data - no party has it all.</li>
+              <li>Who acts now will build the best world model.</li>
+              <li>The pretraining lead: scaling curves + architecture.</li>
+              <li>Catching up requires massive compute and data.</li>
+              <li>Data flywheel: customers produce more data to refine the model.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-22"
+        style="--bg: radial-gradient(circle at 20% 20%, #fff3f3 0%, #ffffff 60%, #f1f6ff 100%); --text: #1a1212;"
+      >
+        <div class="slide-content">
+          <header class="title-block">
+            <h2>Why the Team</h2>
+          </header>
+          <div class="team-grid">
+            <div class="team-card">
+              <img src="assets/pptx/slide22_img27.jpg" alt="Sherry Yang" />
+              <h3>Sherry Yang</h3>
+              <p>Have been building world models since 2023 (ICLR best paper on video as world model).</p>
+            </div>
+            <div class="team-card">
+              <img src="assets/pptx/slide22_img27.jpg" alt="Hieu Pham" />
+              <h3>Hieu Pham</h3>
+              <p>Infra and kernels at xAI / OpenAI.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide"
+        id="slide-23"
+        style="--bg: linear-gradient(135deg, #0f172a 0%, #18253a 60%, #101825 100%); --text: #f8fafc;"
+        data-tone="dark"
+      >
+        <div class="slide-content center">
+          <div class="eyebrow">Ask &amp; Vision</div>
+          <h2 class="hero-title">
+            Investing in the infrastructure that powers the next generation of physical AI.
+          </h2>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const scrolly = document.querySelector(".scrolly");
+
+      function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
+      }
+
+      function updateSlides() {
+        const vh = window.innerHeight || 1;
+        const y = window.scrollY || 0;
+
+        slides.forEach((slide, index) => {
+          const local = (y - index * vh) / vh;
+          const distance = Math.abs(local);
+          const opacity = clamp(1 - distance, 0, 1);
+          const blur = clamp(distance * 14, 0, 14);
+          const translate = clamp(local * 28, -28, 28);
+          const scale = 1 - clamp(distance * 0.02, 0, 0.05);
+
+          slide.style.opacity = opacity.toFixed(3);
+          slide.style.filter = `blur(${blur.toFixed(2)}px)`;
+          slide.style.transform = `translateY(${translate}px) scale(${scale})`;
+          slide.style.pointerEvents = opacity > 0.6 ? "auto" : "none";
+          slide.style.zIndex = Math.round(opacity * 100) + index;
+        });
+      }
+
+      function onResize() {
+        if (scrolly) {
+          scrolly.style.height = `${slides.length * 100}vh`;
+        }
+        updateSlides();
+      }
+
+      function goToSlide(index) {
+        const vh = window.innerHeight || 1;
+        const clamped = clamp(index, 0, slides.length - 1);
+        window.scrollTo({ top: clamped * vh, behavior: "smooth" });
+      }
+
+      function onKeydown(event) {
+        if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+        const vh = window.innerHeight || 1;
+        const current = Math.round((window.scrollY || 0) / vh);
+        if (event.key === "ArrowRight") {
+          goToSlide(current + 1);
+        } else {
+          goToSlide(current - 1);
+        }
+      }
+
+      window.addEventListener("scroll", updateSlides, { passive: true });
+      window.addEventListener("keydown", onKeydown);
+      window.addEventListener("resize", onResize);
+      window.addEventListener("load", onResize);
+
+      onResize();
+    </script>
+  </body>
+</html>
