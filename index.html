@@ -45,7 +45,7 @@
             outline: none;
         }
 
-        /* --- Visual Feedback Overlay (Optional but helpful) --- */
+        /* --- Visual Feedback Overlay --- */
         .status-indicator {
             position: absolute;
             top: 50%;
@@ -57,6 +57,10 @@
             opacity: 0;
             transition: opacity 0.3s ease;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            
+            /* Updates for text-based icons (like "-2s") */
+            font-weight: bold;
+            white-space: nowrap; 
         }
 
         /* Class used to briefly flash the icon */
@@ -77,6 +81,7 @@
             border-radius: 4px;
             font-family: monospace;
             border: 1px solid #555;
+            margin: 0 2px;
         }
     </style>
 </head>
@@ -96,7 +101,10 @@
     </div>
 
     <div class="instructions">
-        <p>Press <kbd>Spacebar</kbd> to Play/Pause</p>
+        <p>
+            Press <kbd>Spacebar</kbd> to Play/Pause <br>
+            Press <kbd>←</kbd> or <kbd>→</kbd> to Seek 2s
+        </p>
     </div>
 
     <script>
@@ -108,26 +116,44 @@
         // 2. Add an event listener for key presses anywhere on the page
         document.addEventListener('keydown', function(event) {
             
-            // Check if the key pressed was the Spacebar
-            // (event.code === 'Space' covers the physical bar, event.key === ' ' covers the character)
+            // --- SPACEBAR: Play/Pause ---
             if (event.code === 'Space' || event.key === ' ') {
-                
-                // Prevent the default browser action (scrolling down the page)
-                event.preventDefault();
-
+                event.preventDefault(); // Stop page scrolling
                 if (video.paused) {
                     video.play();
-                    showIcon('▶'); // Show Play triangle
+                    showIcon('▶');
                 } else {
                     video.pause();
-                    showIcon('⏸'); // Show Pause bars
+                    showIcon('⏸');
                 }
+            }
+            
+            // --- RIGHT ARROW: Skip Forward 2s ---
+            else if (event.code === 'ArrowRight') {
+                event.preventDefault(); // Stop default browser scrolling
+                video.currentTime += 2;
+                showIcon('+2s');
+            }
+
+            // --- LEFT ARROW: Skip Backward 2s ---
+            else if (event.code === 'ArrowLeft') {
+                event.preventDefault(); // Stop default browser scrolling
+                video.currentTime -= 2;
+                showIcon('-2s');
             }
         });
 
         // Helper function to flash the icon on screen
         function showIcon(symbol) {
             statusIcon.textContent = symbol;
+            
+            // If the symbol is text (like +2s), make it slightly smaller than the symbols
+            if (symbol.length > 1) {
+                statusIcon.style.fontSize = "50px"; 
+            } else {
+                statusIcon.style.fontSize = "80px";
+            }
+
             statusIcon.classList.add('show');
 
             // Clear any existing timer to prevent flickering if pressed rapidly
