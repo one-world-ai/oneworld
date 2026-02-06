@@ -1,169 +1,293 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OneWorld AI</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #121212;
-            color: #f0f0f0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OneWorld</title>
+  <meta name="description" content="OneWorld — video world models for robotics post-training." />
 
-        header {
-            margin-bottom: 24px;
-            text-align: center;
-        }
+  <style>
+    :root{
+      --bg:#ffffff;
+      --panel:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:rgba(15, 23, 42, .12);
+      --shadow: 0 12px 30px rgba(15, 23, 42, .08);
+      --radius: 18px;
+      --max: 1120px;
+    }
 
-        h1 {
-            font-weight: 300;
-            margin: 0;
-        }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background: var(--bg);
+      letter-spacing: 0.2px;
+    }
 
-        .video-wrapper {
-            width: 90%;
-            max-width: 900px;
-            background-color: #000;
-            border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-            overflow: hidden;
-            position: relative; /* Needed for overlay centering */
-        }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 20px; }
 
-        video {
-            width: 100%;
-            height: auto;
-            display: block;
-            outline: none;
-        }
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 220px;
+    }
+    .brand img{
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: rgba(15,23,42,.03);
+      border: 1px solid var(--line);
+      padding: 6px;
+    }
+    .brand .name{
+      font-weight: 650;
+      letter-spacing: 0.4px;
+    }
+    .links{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .links a{
+      padding: 8px 10px;
+      border-radius: 999px;
+      transition: background .2s ease, color .2s ease;
+    }
+    .links a:hover{
+      background: rgba(15,23,42,.06);
+      color: var(--text);
+    }
 
-        /* --- Visual Feedback Overlay --- */
-        .status-indicator {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 80px;
-            color: rgba(255, 255, 255, 0.8);
-            pointer-events: none; /* Let clicks pass through to the video */
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            
-            /* Updates for text-based icons (like "-2s") */
-            font-weight: bold;
-            white-space: nowrap; 
-        }
+    main{ padding: 56px 0 70px; }
 
-        /* Class used to briefly flash the icon */
-        .status-indicator.show {
-            opacity: 1;
-        }
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px;
+    }
 
-        .instructions {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #888;
-            text-align: center;
-        }
+    /* Combined hero block */
+    .heroCard{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 26px;
+      align-items:center;
+    }
 
-        kbd {
-            background-color: #333;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-            border: 1px solid #555;
-            margin: 0 2px;
-        }
-    </style>
+    h1{
+      margin: 0 0 12px;
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .lead{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 68ch;
+    }
+
+    .logoBox{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: calc(var(--radius) - 4px);
+      border: 1px dashed rgba(15, 23, 42, .18);
+      background: rgba(15, 23, 42, .02);
+      padding: 22px;
+      min-height: 240px;
+    }
+    .logoBox img{
+      width: min(340px, 100%);
+      height: auto;
+      object-fit: contain;
+    }
+
+    section{ margin-top: 26px; }
+
+    .sectionTitle{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap: 16px;
+      margin: 0 0 14px;
+    }
+    .sectionTitle h2{
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .sectionTitle .hint{
+      font-size: 13px;
+      color: rgba(71,85,105,.9);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .logoTile{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      padding: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height: 86px;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .logoTile:hover{
+      transform: translateY(-1px);
+      background: rgba(15,23,42,.02);
+    }
+    .logoTile img{
+      max-width: 100%;
+      max-height: 48px;
+      object-fit: contain;
+      opacity: 1;
+      filter: none;
+    }
+
+    footer{
+      padding: 28px 0 44px;
+      color: rgba(71,85,105,.85);
+      font-size: 13px;
+    }
+    footer .line{
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      display:flex;
+      justify-content:space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .heroCard{ grid-template-columns: 1fr; }
+      .logoBox{ min-height: 190px; }
+    }
+    @media (max-width: 640px){
+      .links{ display:none; }
+      .card{ padding: 24px; }
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; scroll-behavior:auto !important; }
+    }
+  </style>
 </head>
+
 <body>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <img src="assets/world_model.png" alt="OneWorld logo" />
+          <div class="name">OneWorld</div>
+        </div>
 
-    <header>
-        <h1>OneWorld AI</h1>
-    </header>
-
-    <div class="video-wrapper">
-        <video id="myVideo" controls poster="">
-            <source src="oneworld-ai.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        
-        <div id="statusIcon" class="status-indicator"></div>
+        <nav class="links" aria-label="Primary">
+          <a href="#mission">Mission</a>
+          <a href="#team">Founding Team</a>
+        </nav>
+      </div>
     </div>
+  </header>
 
-    <div class="instructions">
-        <p>
-            Press <kbd>Spacebar</kbd> to Play/Pause <br>
-            Press <kbd>←</kbd> or <kbd>→</kbd> to Seek 2s
+  <main class="wrap">
+    <!-- Single combined block: title + mission + logo -->
+    <div class="card heroCard" id="mission">
+      <div>
+        <h1>OneWorld</h1>
+        <p class="lead">
+          GPT-3 was not usable without post-training. Robotics is facing the post-training gap due to high-cost physical environments.
+          We pretrain the best video world model for evaluating and post-training robots in the cloud.
         </p>
+      </div>
+
+      <div class="logoBox" aria-label="OneWorld logo">
+        <img src="assets/world_model.png" alt="OneWorld — World Model" />
+      </div>
     </div>
 
-    <script>
-        // 1. Select the video element
-        const video = document.getElementById('myVideo');
-        const statusIcon = document.getElementById('statusIcon');
-        let fadeTimeout;
+    <section id="team">
+      <div class="sectionTitle">
+        <h2>Founding Team</h2>
+        <div class="hint">Experience across leading research labs and universities</div>
+      </div>
 
-        // 2. Add an event listener for key presses anywhere on the page
-        document.addEventListener('keydown', function(event) {
-            
-            // --- SPACEBAR: Play/Pause ---
-            if (event.code === 'Space' || event.key === ' ') {
-                event.preventDefault(); // Stop page scrolling
-                if (video.paused) {
-                    video.play();
-                    showIcon('▶');
-                } else {
-                    video.pause();
-                    showIcon('⏸');
-                }
-            }
-            
-            // --- RIGHT ARROW: Skip Forward 2s ---
-            else if (event.code === 'ArrowRight') {
-                event.preventDefault(); // Stop default browser scrolling
-                video.currentTime += 2;
-                showIcon('+2s');
-            }
+      <div class="card">
+        <div class="grid" role="list" aria-label="Founding team affiliations">
+          <!-- Row 1 -->
+          <div class="logoTile" role="listitem" title="Google DeepMind">
+            <img src="assets/google_deepmind.png" alt="Google DeepMind" />
+          </div>
+          <div class="logoTile" role="listitem" title="xAI">
+            <img src="assets/xai.png" alt="xAI" />
+          </div>
+          <div class="logoTile" role="listitem" title="OpenAI">
+            <img src="assets/openai.png" alt="OpenAI" />
+          </div>
 
-            // --- LEFT ARROW: Skip Backward 2s ---
-            else if (event.code === 'ArrowLeft') {
-                event.preventDefault(); // Stop default browser scrolling
-                video.currentTime -= 2;
-                showIcon('-2s');
-            }
-        });
+          <!-- Row 2 -->
+          <div class="logoTile" role="listitem" title="MIT">
+            <img src="assets/mit.png" alt="MIT" />
+          </div>
+          <div class="logoTile" role="listitem" title="Stanford">
+            <img src="assets/stanford.png" alt="Stanford" />
+          </div>
+          <div class="logoTile" role="listitem" title="UC Berkeley">
+            <img src="assets/uc_berkeley.png" alt="UC Berkeley" />
+          </div>
+        </div>
+      </div>
+    </section>
 
-        // Helper function to flash the icon on screen
-        function showIcon(symbol) {
-            statusIcon.textContent = symbol;
-            
-            // If the symbol is text (like +2s), make it slightly smaller than the symbols
-            if (symbol.length > 1) {
-                statusIcon.style.fontSize = "50px"; 
-            } else {
-                statusIcon.style.fontSize = "80px";
-            }
+    <footer>
+      <div class="line">
+        <div>© <span id="year"></span> OneWorld</div>
+      </div>
+    </footer>
+  </main>
 
-            statusIcon.classList.add('show');
-
-            // Clear any existing timer to prevent flickering if pressed rapidly
-            clearTimeout(fadeTimeout);
-
-            // Hide the icon after 500ms
-            fadeTimeout = setTimeout(() => {
-                statusIcon.classList.remove('show');
-            }, 500);
-        }
-    </script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
